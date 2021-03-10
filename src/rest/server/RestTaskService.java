@@ -3,21 +3,12 @@ package rest.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.Position;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import de.jge.customerService.Customer;
-import de.jge.customerService.CustomerService;
-import de.jge.customerService.CustomerServiceService;
-import de.jge.depotService.Depot;
-import de.jge.depotService.DepotService;
-import de.jge.depotService.DepotServiceService;
-import de.jge.depotService.Position;
-import de.jge.priceService.PriceService;
-import de.jge.priceService.PriceServiceService;
 
 @Path("kundenservice")
 public class RestTaskService {

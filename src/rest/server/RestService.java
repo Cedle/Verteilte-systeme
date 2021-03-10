@@ -46,13 +46,14 @@ public class RestService {
 
 			ArrayList<Double> positionen = new ArrayList<Double>();
 			for (Position p : pos) {
+				// Berechnen der Position in Kundenwaehrung
 				double betrag = p.getAmount();
 				double umrechnungsfaktor = ps.getExchangeRate(p.getCurrency(), kunde.getCurrency());
 				double posBetrag = betrag * umrechnungsfaktor;
 				double posBetragRound = Math.round(posBetrag * 100.0) / 100.0;
 				positionen.add(posBetragRound);
 			}
-
+			// Summieren GesamtDepotBetrag
 			double depotBetrag = 0;
 			for (Double d : positionen) {
 				depotBetrag = depotBetrag + d;
@@ -64,16 +65,18 @@ public class RestService {
 			dep1.setDepotNr(depNr);
 			depotList.add(dep1);
 		}
+		// Summieren Gesamtbetrag
 		double gesBetrag = 0;
 		for (Depot_1 depot : depotList) {
 			gesBetrag = gesBetrag + depot.getDepotBetrag();
 		}
+		double gesBetragRound = Math.round(gesBetrag * 100.0) / 100.0;
 
 		// Erstellung des Kunden
 		Kunde k = new Kunde();
 		k.setName(kunde.getFirstName() + " " + kunde.getSurName());
 		k.setDepots(depotList);
-		k.setVermoegen(gesBetrag);
+		k.setVermoegen(gesBetragRound);
 
 		return k;
 	}

@@ -28,16 +28,16 @@ public class RestService {
 	public Kunde getKunde(@PathParam("kundenNummer") int kundenNummer) {
 
 		// Import Services
-		CustomerServiceService cslookup = new CustomerServiceService();
-		CustomerService cs = cslookup.getCustomerServicePort();
-		DepotServiceService dslookup = new DepotServiceService();
-		DepotService ds = dslookup.getDepotServicePort();
-		PriceServiceService pslookup = new PriceServiceService();
-		PriceService ps = pslookup.getPriceServicePort();
+		CustomerServiceService customerLookup = new CustomerServiceService();
+		CustomerService cusService = customerLookup.getCustomerServicePort();
+		DepotServiceService depotLookup = new DepotServiceService();
+		DepotService depService = depotLookup.getDepotServicePort();
+		PriceServiceService priceLookup = new PriceServiceService();
+		PriceService priceService = priceLookup.getPriceServicePort();
 
-		Customer kunde = cs.getCustomer(kundenNummer);
+		Customer kunde = cusService.getCustomer(kundenNummer);
 
-		List<Depot> depotListService = ds.getDepot(kundenNummer);
+		List<Depot> depotListService = depService.getDepot(kundenNummer);
 		ArrayList<Depot_1> depotList = new ArrayList<Depot_1>();
 		for (Depot depotService : depotListService) {
 			int depNr = depotService.getDepotNumber();
@@ -48,7 +48,7 @@ public class RestService {
 			for (Position p : pos) {
 				// Berechnen der Position in Kundenwaehrung
 				double betrag = p.getAmount();
-				double umrechnungsfaktor = ps.getExchangeRate(p.getCurrency(), kunde.getCurrency());
+				double umrechnungsfaktor = priceService.getExchangeRate(p.getCurrency(), kunde.getCurrency());
 				double posBetrag = betrag * umrechnungsfaktor;
 				double posBetragRound = Math.round(posBetrag * 100.0) / 100.0;
 				positionen.add(posBetragRound);

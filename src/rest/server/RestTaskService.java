@@ -9,15 +9,15 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import de.jge.customerService.Customer;
-import de.jge.customerService.CustomerService;
-import de.jge.customerService.CustomerServiceService;
-import de.jge.depotService.Depot;
-import de.jge.depotService.DepotService;
-import de.jge.depotService.DepotServiceService;
-import de.jge.depotService.Position;
-import de.jge.priceService.PriceService;
-import de.jge.priceService.PriceServiceService;
+import customerservice.gen.Customer;
+import customerservice.gen.CustomerService;
+import customerservice.gen.CustomerServiceService;
+import depotservice.gen.Depot;
+import depotservice.gen.DepotService;
+import depotservice.gen.DepotServiceService;
+import depotservice.gen.Position;
+import priceservice.gen.PriceService;
+import priceservice.gen.PriceServiceService;
 
 @Path("kundenservice")
 public class RestTaskService {
